@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://du36aslu531nx"]
+
+[ext_resource type="PackedScene" uid="uid://bop5kht0ymie8" path="res://Cards/Agent1.tscn" id="1_o6xl0"]
+[ext_resource type="Script" uid="uid://c7kqkejkt1jpx" path="res://scenes/main.gd" id="1_tipki"]
+
+[node name="main" type="Node2D" unique_id=188993396]
+script = ExtResource("1_tipki")
+
+[node name="Agent" parent="." unique_id=1692180790 instance=ExtResource("1_o6xl0")]
+position = Vector2(192, 256)
+scale = Vector2(2, 2)
+
+[node name="Agent2" parent="." unique_id=133141918 instance=ExtResource("1_o6xl0")]
+position = Vector2(320, 256)
+scale = Vector2(2, 2)
+
+[node name="Agent3" parent="." unique_id=347390353 instance=ExtResource("1_o6xl0")]
+position = Vector2(448, 256)
+scale = Vector2(2, 2)
+
+[node name="Agent4" parent="." unique_id=2129858583 instance=ExtResource("1_o6xl0")]
+position = Vector2(576, 256)
+scale = Vector2(2, 2)
+
+[node name="Agent5" parent="." unique_id=1072367697 instance=ExtResource("1_o6xl0")]
+position = Vector2(704, 256)
+scale = Vector2(2, 2)
+
+[node name="Agent6" parent="." unique_id=1342984907 instance=ExtResource("1_o6xl0")]
+position = Vector2(832, 256)
+scale = Vector2(2, 2)
+
+[node name="Agent7" parent="." unique_id=764809062 instance=ExtResource("1_o6xl0")]
+position = Vector2(960, 256)
+scale = Vector2(2, 2)
+
+[node name="Button" type="Button" parent="." unique_id=2038140509]
+offset_left = 488.0
+offset_top = 448.0
+offset_right = 664.0
+offset_bottom = 512.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

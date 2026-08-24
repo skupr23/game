@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cpngp76dwoidq"]
+
+[ext_resource type="Texture2D" uid="uid://cjch43ufbp188" path="res://Sprites/White.png" id="1_lljvb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lljvb"]
+size = Vector2(32, 56)
+
+[node name="Agent" type="Node2D" unique_id=1692180790]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=179447760]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(-4.7683716e-07, 0)
+scale = Vector2(2, 3.5)
+texture = ExtResource("1_lljvb")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1488225215]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=496447467]
+shape = SubResource("RectangleShape2D_lljvb")
