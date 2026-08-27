@@ -53,4 +53,49 @@ offset_top = 448.0
 offset_right = 664.0
 offset_bottom = 512.0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=907246491]
+
+[node name="ChosenLabel" type="Label" parent="CanvasLayer" unique_id=2015380890]
+offset_right = 90.0
+offset_bottom = 59.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(20, 20)
+text = "Chosen: 0/2"
+
+[node name="ResultLabel" type="Label" parent="CanvasLayer" unique_id=543805257]
+anchors_preset = -1
+anchor_left = 0.42447916
+anchor_top = 0.64506173
+anchor_right = 0.5407986
+anchor_bottom = 0.65586424
+offset_right = 40.0
+offset_bottom = 23.0
+offset_transform_position = Vector2(450, 580)
+metadata/_edit_use_anchors_ = true
+
+[node name="WinsLabel" type="Label" parent="CanvasLayer" unique_id=30081999]
+offset_right = 40.0
+offset_bottom = 23.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(950, 20)
+metadata/_edit_use_anchors_ = true
+
+[node name="FailsLabel" type="Label" parent="CanvasLayer" unique_id=1211348617]
+offset_right = 40.0
+offset_bottom = 23.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1050, 20)
+metadata/_edit_use_anchors_ = true
+
+[node name="RoundLabel" type="Label" parent="CanvasLayer" unique_id=282581094]
+anchors_preset = -1
+anchor_left = 0.45833334
+anchor_top = 0.032407407
+anchor_right = 0.6258681
+anchor_bottom = 0.06790123
+offset_right = 40.0
+offset_bottom = 23.0
+offset_transform_position = Vector2(500, 20)
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
