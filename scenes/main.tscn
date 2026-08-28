@@ -2,15 +2,41 @@
 
 [ext_resource type="PackedScene" uid="uid://bop5kht0ymie8" path="res://Cards/Agent1.tscn" id="1_o6xl0"]
 [ext_resource type="Script" uid="uid://c7kqkejkt1jpx" path="res://scenes/main.gd" id="1_tipki"]
+[ext_resource type="Texture2D" uid="uid://qar825htq3bd" path="res://Sprites/background.png" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://bv1s7qsnt20r3" path="res://Sprites/priest.png" id="3_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://ck8igx3fa7gq3" path="res://Sprites/witch.png" id="4_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://b0revnnb670fu" path="res://Sprites/dwarf.png" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://fj5663xyusw4" path="res://Sprites/Raindi.png" id="5_tefeu"]
+[ext_resource type="Texture2D" uid="uid://be167qcbt7gbx" path="res://Sprites/Glekhi.png" id="6_o6xl0"]
+[ext_resource type="FontFile" uid="uid://08x363yk6ovp" path="res://Sprites/Minecraft.ttf" id="8_tipki"]
+[ext_resource type="Texture2D" uid="uid://cknqeitbr141f" path="res://Sprites/door.png" id="9_85g3d"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0wfyh"]
 load_path = "res://.godot/imported/dwarf.png-da9e4db6d611ef04212110d8361d5611.ctex"
 
+[sub_resource type="LabelSettings" id="LabelSettings_o6xl0"]
+font = ExtResource("8_tipki")
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_524kh"]
+font = ExtResource("8_tipki")
+
+[sub_resource type="LabelSettings" id="LabelSettings_og7ea"]
+font = ExtResource("8_tipki")
+
+[sub_resource type="LabelSettings" id="LabelSettings_61afc"]
+font = ExtResource("8_tipki")
+
+[sub_resource type="LabelSettings" id="LabelSettings_fo6rd"]
+font = ExtResource("8_tipki")
+
 [node name="main" type="Node2D" unique_id=188993396]
 script = ExtResource("1_tipki")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=365910022]
+modulate = Color(0.5866749, 0.5866749, 0.5866749, 1)
+position = Vector2(616, 336)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_o6xl0")
 
 [node name="Agent" parent="." unique_id=1692180790 instance=ExtResource("1_o6xl0")]
 position = Vector2(192, 256)
@@ -25,17 +51,17 @@ picture = ExtResource("3_jyhfs")
 [node name="Agent3" parent="." unique_id=347390353 instance=ExtResource("1_o6xl0")]
 position = Vector2(448, 256)
 scale = Vector2(2, 2)
-picture = ExtResource("4_tbgi4")
+picture = ExtResource("6_o6xl0")
 
 [node name="Agent4" parent="." unique_id=2129858583 instance=ExtResource("1_o6xl0")]
 position = Vector2(576, 256)
 scale = Vector2(2, 2)
-picture = ExtResource("3_jyhfs")
+picture = ExtResource("5_tefeu")
 
 [node name="Agent5" parent="." unique_id=1072367697 instance=ExtResource("1_o6xl0")]
 position = Vector2(704, 256)
 scale = Vector2(2, 2)
-picture = ExtResource("5_tbgi4")
+picture = ExtResource("6_o6xl0")
 
 [node name="Agent6" parent="." unique_id=1342984907 instance=ExtResource("1_o6xl0")]
 position = Vector2(832, 256)
@@ -45,7 +71,7 @@ picture = ExtResource("4_tbgi4")
 [node name="Agent7" parent="." unique_id=764809062 instance=ExtResource("1_o6xl0")]
 position = Vector2(960, 256)
 scale = Vector2(2, 2)
-picture = ExtResource("3_jyhfs")
+picture = ExtResource("6_o6xl0")
 
 [node name="Button" type="Button" parent="." unique_id=2038140509]
 offset_left = 488.0
@@ -61,6 +87,7 @@ offset_bottom = 59.0
 offset_transform_enabled = true
 offset_transform_position = Vector2(20, 20)
 text = "Chosen: 0/2"
+label_settings = SubResource("LabelSettings_o6xl0")
 
 [node name="ResultLabel" type="Label" parent="CanvasLayer" unique_id=543805257]
 anchors_preset = -1
@@ -71,6 +98,7 @@ anchor_bottom = 0.65586424
 offset_right = 40.0
 offset_bottom = 23.0
 offset_transform_position = Vector2(450, 580)
+label_settings = SubResource("LabelSettings_524kh")
 metadata/_edit_use_anchors_ = true
 
 [node name="WinsLabel" type="Label" parent="CanvasLayer" unique_id=30081999]
@@ -78,6 +106,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 offset_transform_enabled = true
 offset_transform_position = Vector2(950, 20)
+label_settings = SubResource("LabelSettings_og7ea")
 metadata/_edit_use_anchors_ = true
 
 [node name="FailsLabel" type="Label" parent="CanvasLayer" unique_id=1211348617]
@@ -85,6 +114,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 offset_transform_enabled = true
 offset_transform_position = Vector2(1050, 20)
+label_settings = SubResource("LabelSettings_61afc")
 metadata/_edit_use_anchors_ = true
 
 [node name="RoundLabel" type="Label" parent="CanvasLayer" unique_id=282581094]
@@ -96,6 +126,13 @@ anchor_bottom = 0.06790123
 offset_right = 40.0
 offset_bottom = 23.0
 offset_transform_position = Vector2(500, 20)
+label_settings = SubResource("LabelSettings_fo6rd")
 metadata/_edit_use_anchors_ = true
+
+[node name="Door" type="Sprite2D" parent="." unique_id=721794594]
+z_index = 10
+position = Vector2(575.99994, 107.15999)
+scale = Vector2(3.65, 3.43025)
+texture = ExtResource("9_85g3d")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

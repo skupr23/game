@@ -8,6 +8,7 @@ var id = 0
 
 func _ready() -> void:
 	$Sprite2D.texture = picture
+	modulate = Color("afafaf")
 
 func _process(delta: float) -> void:
 	pass
