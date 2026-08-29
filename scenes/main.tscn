@@ -7,8 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://ck8igx3fa7gq3" path="res://Sprites/witch.png" id="4_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://fj5663xyusw4" path="res://Sprites/Raindi.png" id="5_tefeu"]
 [ext_resource type="Texture2D" uid="uid://be167qcbt7gbx" path="res://Sprites/Glekhi.png" id="6_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://df35g7c2wfera" path="res://Sprites/button.png" id="8_choun"]
 [ext_resource type="FontFile" uid="uid://08x363yk6ovp" path="res://Sprites/Minecraft.ttf" id="8_tipki"]
 [ext_resource type="Texture2D" uid="uid://cknqeitbr141f" path="res://Sprites/door.png" id="9_85g3d"]
+[ext_resource type="Texture2D" uid="uid://dpccoucqoupqa" path="res://Sprites/button2.png" id="9_ya4ey"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0wfyh"]
 load_path = "res://.godot/imported/dwarf.png-da9e4db6d611ef04212110d8361d5611.ctex"
@@ -27,6 +29,9 @@ font = ExtResource("8_tipki")
 font = ExtResource("8_tipki")
 
 [sub_resource type="LabelSettings" id="LabelSettings_fo6rd"]
+font = ExtResource("8_tipki")
+
+[sub_resource type="LabelSettings" id="LabelSettings_85g3d"]
 font = ExtResource("8_tipki")
 
 [node name="main" type="Node2D" unique_id=188993396]
@@ -74,10 +79,25 @@ scale = Vector2(2, 2)
 picture = ExtResource("6_o6xl0")
 
 [node name="Button" type="Button" parent="." unique_id=2038140509]
-offset_left = 488.0
-offset_top = 448.0
-offset_right = 664.0
-offset_bottom = 512.0
+offset_left = 472.0
+offset_top = 451.0
+offset_right = 672.0
+offset_bottom = 523.0
+
+[node name="Button2" type="Sprite2D" parent="Button" unique_id=481838304]
+position = Vector2(104, 40)
+scale = Vector2(2, 2)
+texture = ExtResource("8_choun")
+
+[node name="Button2" type="Button" parent="." unique_id=1922018917]
+offset_left = 280.0
+offset_top = 536.0
+offset_right = 408.0
+offset_bottom = 576.0
+
+[node name="Button3" type="Sprite2D" parent="Button2" unique_id=132013349]
+position = Vector2(64, 24)
+texture = ExtResource("9_ya4ey")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=907246491]
 
@@ -107,6 +127,7 @@ offset_bottom = 23.0
 offset_transform_enabled = true
 offset_transform_position = Vector2(950, 20)
 label_settings = SubResource("LabelSettings_og7ea")
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="FailsLabel" type="Label" parent="CanvasLayer" unique_id=1211348617]
@@ -129,10 +150,28 @@ offset_transform_position = Vector2(500, 20)
 label_settings = SubResource("LabelSettings_fo6rd")
 metadata/_edit_use_anchors_ = true
 
+[node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=2108145930]
+anchors_preset = -1
+anchor_left = 0.4826389
+anchor_top = 0.96450615
+anchor_right = 0.5173611
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -65.0
+offset_right = 4.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_85g3d")
+metadata/_edit_use_anchors_ = true
+
 [node name="Door" type="Sprite2D" parent="." unique_id=721794594]
 z_index = 10
 position = Vector2(575.99994, 107.15999)
 scale = Vector2(3.65, 3.43025)
 texture = ExtResource("9_85g3d")
 
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

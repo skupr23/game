@@ -10,6 +10,9 @@ var nodes: Array[Node] = []
 var chosen: Array[Node] = []
 var game_over = false
 var door_pos = Vector2(0,0)
+var score = 0
+var reveal_mode = false
+@onready var score_label: Label = $CanvasLayer/ScoreLabel
 @onready var chosen_label: Label = $CanvasLayer/ChosenLabel
 @onready var result_label: Label = $CanvasLayer/ResultLabel
 @onready var wins_label: Label = $CanvasLayer/WinsLabel
@@ -24,7 +27,6 @@ func _ready() -> void:
 	nodes.append($Agent5)
 	nodes.append($Agent6)
 	nodes.append($Agent7)
- 
 	var i = 0
 	for node in nodes:
 		node.clicked.connect(choose)
@@ -41,6 +43,7 @@ func _ready() -> void:
 			remaining_evils -= 1
 			print(pick.id)
 	chosen_label.visible = false
+	$Button2/Button3.modulate = Color("afafaf")
  
 
 var move = false
@@ -68,6 +71,7 @@ func start_round() -> void:
 	chosen_label.visible = true
 	choosable = round_requirements[current_round]
 	chosen = []
+	reveal_mode = false
 	# reset visuals only — good/evil identities stay fixed
 	for node in nodes:
 		node.modulate = Color("afafaf")
@@ -81,6 +85,20 @@ func choose(id: int) -> void:
 		return
 	if shooting_phase:
 		shoot(id)
+		return
+	if reveal_mode:
+		var target = nodes[id]
+		if target.good:
+			target.modulate = Color.GREEN
+		else:
+			target.modulate = Color.RED
+			
+		# Restore remaining cards to their normal/chosen colors
+		for node in nodes:
+			if node != target:
+				node.modulate = Color.WHITE if (node in chosen) else Color("afafaf")
+				
+		reveal_mode = false
 		return
 	var node = nodes[id]
 	if node in chosen:
@@ -106,10 +124,16 @@ func _on_button_pressed() -> void:
 		mission_fails += 1
 		result_label.text = "Mission Failed!"
 		result_label.modulate = Color.RED
+		score += 50
+		if score>=200:
+			$Button2/Button3.modulate = Color.WHITE
 	else:
 		mission_wins += 1
 		result_label.text = "Mission Success!"
 		result_label.modulate = Color.GREEN
+		score += 100
+		if score>=200:
+			$Button2/Button3.modulate = Color.WHITE
 	update_labels()
 	if mission_fails == 3:
 		end_game()
@@ -135,6 +159,7 @@ func update_labels() -> void:
 	chosen_label.text = "Chosen: %d/%d" % [round_requirements[current_round] - choosable, round_requirements[current_round]]
 	wins_label.text = "Successes  %d" % mission_wins
 	fails_label.text = "| %d Fails" % mission_fails
+	score_label.text = "Score: %d" % score 
 	round_label.text = "Round: %d/5" % [current_round + 1]
  
 
@@ -146,9 +171,9 @@ func choose_bad_guys():
 	chosen = []
 	chosen_label.text = "Shoot the Bad Guys"
 	wins_label.text = "Shoot the Bad Guys" 
-	fails_label.text = "Shoot the Bad Guys" 
 	round_label.text = "Shoot the Bad Guys" 
 	$Button.queue_free()
+	$Button2.queue_free()
 	shooting_phase = true
 
 func shoot(id: int):
@@ -165,13 +190,44 @@ func shoot(id: int):
 	else:
 		result_label.text = "You Killed a Good Guy! Game Over!"
 		game_over = true 
+		modulate = Color.RED
 		await get_tree().create_timer(1.2).timeout
 		get_tree().reload_current_scene()
 	
 	if evils == 0:
+		modulate = Color.GREEN
 		await get_tree().create_timer(1.2).timeout
 		get_tree().reload_current_scene()
 
 func close_game():
 	move_back = true
-	
+
+
+func _on_button_mouse_entered() -> void:
+	$Button/Button2.modulate = Color.WHITE
+
+
+func _on_button_mouse_exited() -> void:
+	$Button/Button2.modulate = Color("afafaf")
+
+
+func _on_button_2_pressed() -> void:
+	if game_over or shooting_phase or reveal_mode:
+		return
+	if score >= 200:
+		score -= 200
+		reveal_mode = true
+		update_labels()
+		# Darken all cards to indicate scan mode is ready
+		for node in nodes:
+			node.modulate = Color("444444")
+	if score<200:
+		$Button2/Button3.modulate = Color("afafaf")
+
+
+func _on_button_2_mouse_entered() -> void:
+	$Button2/Button3.modulate = Color.WHITE
+
+
+func _on_button_2_mouse_exited() -> void:
+	$Button2/Button3.modulate = Color("afafaf")
